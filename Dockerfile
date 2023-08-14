@@ -5,10 +5,11 @@ FROM php:8-fpm
 RUN apt-get update && apt-get install -y \
     zip \
     curl \
-    libpq-dev
+    libpq-dev \
+    libicu-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_pgsql
+RUN docker-php-ext-install pdo pdo_pgsql intl
 
 # Set the working directory
 WORKDIR /var/www/html
