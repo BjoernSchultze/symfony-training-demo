@@ -6,10 +6,13 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     libpq-dev \
-    libicu-dev
+    libicu-dev \
+    librabbitmq-dev
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_pgsql intl
+RUN pecl install amqp && docker-php-ext-enable amqp
+COPY ./.docker/custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
 
 # Set the working directory
 WORKDIR /var/www/html

@@ -38,6 +38,11 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/blog')]
 class BlogController extends AbstractController
 {
+    public function __construct(
+        private CommentController $imagePostController
+    ) {
+    }
+
     /**
      * NOTE: For standard formats, Symfony will also automatically choose the best
      * Content-Type header for the response.
